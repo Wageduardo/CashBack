@@ -1,6 +1,5 @@
 # CashBack
 
 Download Zip File.
-
-Leia o Readme.md.
-
+Descompactar o arquivo
+Leia o Readme.md dentro con as instruções.
