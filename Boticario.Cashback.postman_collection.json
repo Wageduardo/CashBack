@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "2258f718-ff2e-424b-9ee3-af2b961100f5",
+		"_postman_id": "fc13ae5e-032d-4db4-96f8-2162db9531e9",
 		"name": "Boticario.Cashback",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -17,7 +17,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "b92c3981-a170-41f3-9d3e-6cfbc0d45efa",
+										"id": "cacf1abb-c114-4875-8c61-089f416f4db9",
 										"exec": [
 											"tests[\"should have response\"] = responseBody !== \"\";\r",
 											"if(tests[\"should have response\"]){\r",
@@ -73,13 +73,13 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "644a32f4-0740-4da9-95d3-76f375fcec34",
+												"id": "cb7a930c-7b5f-42eb-87af-cc546180475e",
 												"exec": [
 													"tests[\"should have response\"] = responseBody !== \"\";\r",
 													"if(tests[\"should have response\"]){\r",
 													"    var response = JSON.parse(responseBody);\r",
 													"    pm.environment.set(\"userId\", response[0].id);\r",
-													"    pm.environment.set(\"userIdPreApproved\", response[response.length-1].cpf);\r",
+													"    pm.environment.set(\"userIdPreApproved\", response[_.random(4, 4+2)].cpf);\r",
 													"}"
 												],
 												"type": "text/javascript"
@@ -119,7 +119,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "16319077-943f-412b-8816-69d4ca76a5b7",
+												"id": "6b1ea9ce-fe25-40e1-80fc-ccbc6b61f265",
 												"exec": [
 													"tests[\"should have response\"] = responseBody !== \"\";"
 												],
@@ -161,7 +161,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "1c21776e-41fa-4122-8cfa-3c310829405e",
+												"id": "de9ca14c-3372-413a-85da-d53eb838d44f",
 												"exec": [
 													"tests[\"should have response\"] = responseBody !== \"\";"
 												],
@@ -203,7 +203,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "bb520886-f3b6-4a86-9a1b-59a1a23945e7",
+												"id": "c5aff8b1-294e-4063-9ac4-15ecf60508e0",
 												"exec": [
 													"tests[\"should have response\"] = responseBody !== \"\";"
 												],
@@ -253,7 +253,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "85b8ed14-7d2e-4ae3-9918-a77c29c26cdb",
+												"id": "c273a950-8f6e-482c-bff8-584470fe7071",
 												"exec": [
 													"tests[\"should have response\"] = responseBody !== \"\";"
 												],
@@ -294,7 +294,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "2212c324-7bf8-421a-b262-11a9c2a5a3e1",
+												"id": "b30bf0b2-0c8e-4502-a7ab-e6d75c591a60",
 												"exec": [
 													"tests[\"should have response\"] = responseBody !== \"\";"
 												],
@@ -342,7 +342,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "286d3fb3-1a7d-40de-ae0c-88364bbd96d0",
+												"id": "8c383fa0-c840-47a2-b45c-9714a49c49be",
 												"exec": [
 													"tests[\"should have response\"] = responseBody !== \"\";"
 												],
@@ -397,7 +397,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "26b50a7f-e4cc-48fe-9ac0-0ba8e2f5cdac",
+												"id": "d95ac85c-c2ad-483c-bf40-b2a4a8cdfa23",
 												"exec": [
 													"tests[\"should have response\"] = responseBody !== \"\";"
 												],
@@ -445,7 +445,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "1dce137a-5cf7-45a2-be8f-130e8cc92c97",
+												"id": "771ddefb-39a0-4fa9-908d-959ee827ab93",
 												"exec": [
 													"tests[\"should have response\"] = responseBody !== \"\";\r",
 													"if(tests[\"should have response\"]){\r",
@@ -491,7 +491,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "9f191e7d-f912-4f0b-b656-74078d3b41e2",
+												"id": "72e62da9-f72a-48f6-900d-08201a7c6d9d",
 												"exec": [
 													"tests[\"should have response\"] = responseBody !== \"\";"
 												],
@@ -540,7 +540,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "d46371f1-0641-4a64-ac3c-76285acc793c",
+												"id": "56674f6a-dfb3-4bd4-a2ed-ffb85b383cb6",
 												"exec": [
 													"tests[\"should have response\"] = responseBody !== \"\";"
 												],
@@ -581,7 +581,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "48c59b33-8176-42db-9a51-cafd3a8751e7",
+												"id": "7816d4d3-83cc-4009-8fd6-fe4cb8e78d6e",
 												"exec": [
 													"tests[\"should have response\"] = responseBody !== \"\";"
 												],
@@ -648,7 +648,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "0a8b49d6-d016-403f-9c79-9764c4b2c89b",
+										"id": "ac24ec96-c2f8-418f-9f30-d97235f72998",
 										"exec": [
 											"tests[\"should have response\"] = responseBody !== \"\";\r",
 											"if(tests[\"should have response\"]){\r",
@@ -703,7 +703,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "264ff2af-2082-4f59-9fb1-0fc108d98d68",
+												"id": "f64e52c1-9765-4759-8f31-bfbbd0c65426",
 												"exec": [
 													"tests[\"should have response\"] = responseBody !== \"\";"
 												],
@@ -745,7 +745,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "b05ca781-778c-450a-b815-0d13065cbd94",
+												"id": "27609515-3b14-45da-af2e-35eae1b5ab26",
 												"exec": [
 													"tests[\"should have response\"] = responseBody !== \"\";"
 												],
@@ -787,7 +787,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "959d9b4f-64ab-4db0-bdf2-7f93d453404e",
+												"id": "a7e558f8-d374-4d71-8b29-068180d958fe",
 												"exec": [
 													"tests[\"should have response\"] = responseBody !== \"\";"
 												],
@@ -839,7 +839,7 @@
 												{
 													"listen": "test",
 													"script": {
-														"id": "a5b997de-6005-4279-91ac-6e70aa722598",
+														"id": "6b46a6a4-e295-4b73-989f-1cf4333384c6",
 														"exec": [
 															"tests[\"should have response\"] = responseBody !== \"\";\r",
 															"if(tests[\"should have response\"]){\r",
@@ -857,7 +857,7 @@
 												"header": [],
 												"body": {
 													"mode": "raw",
-													"raw": "{\r\n  \"email\": \"preapporved@boticario.com.br\",\r\n  \"password\": \"password\"\r\n}",
+													"raw": "{\r\n  \"email\": \"preapproved@boticario.com.br\",\r\n  \"password\": \"password\"\r\n}",
 													"options": {
 														"raw": {
 															"language": "json"
@@ -884,7 +884,7 @@
 												{
 													"listen": "test",
 													"script": {
-														"id": "fee475bd-add9-4386-b303-938778e97d5b",
+														"id": "a53794f6-7cd5-4cf9-a9c8-fbe8fde6208d",
 														"exec": [
 															"tests[\"should have response\"] = responseBody !== \"\";"
 														],
@@ -907,7 +907,7 @@
 												"header": [],
 												"body": {
 													"mode": "raw",
-													"raw": "{\r\n    \"cpf\": \"15350946056\",\r\n    \"value\": 15000,\r\n    \"email\": \"preapporved@boticario.com.br\"\r\n}",
+													"raw": "{\r\n    \"cpf\": \"15350946056\",\r\n    \"value\": 15000,\r\n    \"email\": \"preapproved@boticario.com.br\"\r\n}",
 													"options": {
 														"raw": {
 															"language": "json"
@@ -938,7 +938,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "85049a6b-17ef-4122-865d-c11f3b261cef",
+												"id": "f0a5acdf-e1f3-47d4-b043-80cdc72534d9",
 												"exec": [
 													"tests[\"should have response\"] = responseBody !== \"\";\r",
 													"if(tests[\"should have response\"]){\r",
@@ -983,7 +983,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "9a16982f-4496-4eb5-8acd-17c816187a49",
+												"id": "9ae7cade-790a-4f35-a3bb-25f9da477897",
 												"exec": [
 													"tests[\"should have response\"] = responseBody !== \"\";"
 												],
@@ -1025,7 +1025,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "286878a3-62a6-4f43-ae9d-2279fe3d3da7",
+												"id": "632777d1-827a-46cb-886b-e2d9ba1113f3",
 												"exec": [
 													"tests[\"should have response\"] = responseBody !== \"\";\r",
 													"if(tests[\"should have response\"]){\r",
@@ -1079,7 +1079,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "84890a61-94af-414b-9526-ca0377543ab1",
+												"id": "3b6341ba-add2-4041-9d12-490ecdf2fb18",
 												"exec": [
 													"tests[\"should have response\"] = responseBody !== \"\";\r",
 													"if(tests[\"should have response\"]){\r",
@@ -1106,7 +1106,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"cpf\": \"82177322057\",\r\n    \"value\": 1500.0,\r\n    \"email\": \"user@boticario.com.br\",\r\n    \"code\": \"0502A0FDCBF743E5\",\r\n    \"cashbackPercent\": 20.0,\r\n    \"cashbackValue\": 1200.0,\r\n    \"status\": \"OnCheking\",\r\n    \"id\": \"{{idPurchaseUserUpadate}}\",\r\n    \"createdTime\": \"2020-08-16T02:32:45.1401277Z\"\r\n}",
+											"raw": "{\r\n    \"cpf\": \"82177322057\",\r\n    \"value\": 1500.0,\r\n    \"email\": \"user@boticario.com.br\",\r\n    \"code\": \"0502A0FDCBF743E5\",\r\n    \"cashbackPercent\": 20.0,\r\n    \"cashbackValue\": 1200.0,\r\n    \"status\": \"OnChecking\",\r\n    \"id\": \"{{idPurchaseUserUpadate}}\",\r\n    \"createdTime\": \"2020-08-16T02:32:45.1401277Z\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
