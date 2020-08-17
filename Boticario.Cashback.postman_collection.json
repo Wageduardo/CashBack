@@ -1,0 +1,1144 @@
+{
+	"info": {
+		"_postman_id": "2258f718-ff2e-424b-9ee3-af2b961100f5",
+		"name": "Boticario.Cashback",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Administrator",
+			"item": [
+				{
+					"name": "Security",
+					"item": [
+						{
+							"name": "Auth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b92c3981-a170-41f3-9d3e-6cfbc0d45efa",
+										"exec": [
+											"tests[\"should have response\"] = responseBody !== \"\";\r",
+											"if(tests[\"should have response\"]){\r",
+											"    var response = JSON.parse(responseBody);\r",
+											"\r",
+											"    pm.environment.set(\"token\", response.token);\r",
+											"    pm.environment.set(\"currentToken\", response.token);\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"admin@boticario.com.br\",\r\n  \"password\": \"password\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{server}}/api/Auth",
+									"protocol": "http",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"api",
+										"Auth"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Administrator-APIs",
+					"item": [
+						{
+							"name": "UserController",
+							"item": [
+								{
+									"name": "GetAll",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "644a32f4-0740-4da9-95d3-76f375fcec34",
+												"exec": [
+													"tests[\"should have response\"] = responseBody !== \"\";\r",
+													"if(tests[\"should have response\"]){\r",
+													"    var response = JSON.parse(responseBody);\r",
+													"    pm.environment.set(\"userId\", response[0].id);\r",
+													"    pm.environment.set(\"userIdPreApproved\", response[response.length-1].cpf);\r",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://{{server}}/api/User",
+											"protocol": "http",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"api",
+												"User"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "GetByID",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "16319077-943f-412b-8816-69d4ca76a5b7",
+												"exec": [
+													"tests[\"should have response\"] = responseBody !== \"\";"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://{{server}}/api/User/{{userId}}",
+											"protocol": "http",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"api",
+												"User",
+												"{{userId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "GetMe",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "1c21776e-41fa-4122-8cfa-3c310829405e",
+												"exec": [
+													"tests[\"should have response\"] = responseBody !== \"\";"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://{{server}}/api/User/me",
+											"protocol": "http",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"api",
+												"User",
+												"me"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "bb520886-f3b6-4a86-9a1b-59a1a23945e7",
+												"exec": [
+													"tests[\"should have response\"] = responseBody !== \"\";"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"Jon doe 2\",\r\n    \"cpf\": \"{{$randomInt}}\",\r\n    \"email\": \"{{$randomUserName}}@boticario.com.br\",\r\n    \"role\": \"User\",\r\n    \"password\" : \"password\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://{{server}}/api/User",
+											"protocol": "http",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"api",
+												"User"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CreateAdmintUser",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "85b8ed14-7d2e-4ae3-9918-a77c29c26cdb",
+												"exec": [
+													"tests[\"should have response\"] = responseBody !== \"\";"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"Jon doe 2\",\r\n    \"cpf\": \"{{$randomInt}}\",\r\n    \"email\": \"{{$randomUserName}}@boticario.com.br\",\r\n    \"role\": \"Administrator\",\r\n    \"password\" : \"password\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://{{server}}/api/User/CreateAdmintUser",
+											"protocol": "http",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"api",
+												"User",
+												"CreateAdmintUser"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "GetExternalAccumulatedCashback",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2212c324-7bf8-421a-b262-11a9c2a5a3e1",
+												"exec": [
+													"tests[\"should have response\"] = responseBody !== \"\";"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://{{server}}/api/User/GetExternalAccumulatedCashback?cpf=123123123",
+											"protocol": "http",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"api",
+												"User",
+												"GetExternalAccumulatedCashback"
+											],
+											"query": [
+												{
+													"key": "cpf",
+													"value": "123123123"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "GetInternalAccumulatedCashback",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "286d3fb3-1a7d-40de-ae0c-88364bbd96d0",
+												"exec": [
+													"tests[\"should have response\"] = responseBody !== \"\";"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://{{server}}/api/User/GetInternalAccumulatedCashback?cpf=82177322057",
+											"protocol": "http",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"api",
+												"User",
+												"GetInternalAccumulatedCashback"
+											],
+											"query": [
+												{
+													"key": "cpf",
+													"value": "82177322057"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "LogController",
+							"item": [
+								{
+									"name": "GetAll",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "26b50a7f-e4cc-48fe-9ac0-0ba8e2f5cdac",
+												"exec": [
+													"tests[\"should have response\"] = responseBody !== \"\";"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://{{server}}/api/Log",
+											"protocol": "http",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"api",
+												"Log"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "PurchaseController",
+							"item": [
+								{
+									"name": "GetAll",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "1dce137a-5cf7-45a2-be8f-130e8cc92c97",
+												"exec": [
+													"tests[\"should have response\"] = responseBody !== \"\";\r",
+													"if(tests[\"should have response\"]){\r",
+													"    var response = JSON.parse(responseBody);\r",
+													"    pm.environment.set(\"idpurchaseDelete\", response[0].id);\r",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://{{server}}/api/Purchase/GetAll",
+											"protocol": "http",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"api",
+												"Purchase",
+												"GetAll"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "9f191e7d-f912-4f0b-b656-74078d3b41e2",
+												"exec": [
+													"tests[\"should have response\"] = responseBody !== \"\";"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://{{server}}/api/Purchase/{{idpurchaseDelete}}",
+											"protocol": "http",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"api",
+												"Purchase",
+												"{{idpurchaseDelete}}"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "PreApprovedController",
+							"item": [
+								{
+									"name": "GetAllAsync",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "d46371f1-0641-4a64-ac3c-76285acc793c",
+												"exec": [
+													"tests[\"should have response\"] = responseBody !== \"\";"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://{{server}}/api/PreApproved",
+											"protocol": "http",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"api",
+												"PreApproved"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CreateAsync",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "48c59b33-8176-42db-9a51-cafd3a8751e7",
+												"exec": [
+													"tests[\"should have response\"] = responseBody !== \"\";"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"cpf\": \"{{userIdPreApproved}}\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://{{server}}/api/PreApproved",
+											"protocol": "http",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"api",
+												"PreApproved"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Secutiry",
+					"item": [
+						{
+							"name": "Auth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "0a8b49d6-d016-403f-9c79-9764c4b2c89b",
+										"exec": [
+											"tests[\"should have response\"] = responseBody !== \"\";\r",
+											"if(tests[\"should have response\"]){\r",
+											"    var response = JSON.parse(responseBody);\r",
+											"\r",
+											"    pm.environment.set(\"userToken\", response.token);\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"user@boticario.com.br\",\r\n  \"password\": \"password\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{server}}/api/Auth",
+									"protocol": "http",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"api",
+										"Auth"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "User-APIs",
+					"item": [
+						{
+							"name": "UserController",
+							"item": [
+								{
+									"name": "GetMe",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "264ff2af-2082-4f59-9fb1-0fc108d98d68",
+												"exec": [
+													"tests[\"should have response\"] = responseBody !== \"\";"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{userToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://{{server}}/api/User/me",
+											"protocol": "http",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"api",
+												"User",
+												"me"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "GetMyExternalAccumulatedCashback",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "b05ca781-778c-450a-b815-0d13065cbd94",
+												"exec": [
+													"tests[\"should have response\"] = responseBody !== \"\";"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{userToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://{{server}}/api/User/GetMyExternalAccumulatedCashback",
+											"protocol": "http",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"api",
+												"User",
+												"GetMyExternalAccumulatedCashback"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "GetMyInternalAccumulatedCashback",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "959d9b4f-64ab-4db0-bdf2-7f93d453404e",
+												"exec": [
+													"tests[\"should have response\"] = responseBody !== \"\";"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{userToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://{{server}}/api/User/GetMyInternalAccumulatedCashback",
+											"protocol": "http",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"api",
+												"User",
+												"GetMyInternalAccumulatedCashback"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "PurchaseController",
+							"item": [
+								{
+									"name": "PreApprovedTest",
+									"item": [
+										{
+											"name": "AuthPreApproved",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "a5b997de-6005-4279-91ac-6e70aa722598",
+														"exec": [
+															"tests[\"should have response\"] = responseBody !== \"\";\r",
+															"if(tests[\"should have response\"]){\r",
+															"    var response = JSON.parse(responseBody);\r",
+															"\r",
+															"    pm.environment.set(\"userTokenApproved\", response.token);\r",
+															"}"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"email\": \"preapporved@boticario.com.br\",\r\n  \"password\": \"password\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://{{server}}/api/Auth",
+													"protocol": "http",
+													"host": [
+														"{{server}}"
+													],
+													"path": [
+														"api",
+														"Auth"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Create - CPF preapporved",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "fee475bd-add9-4386-b303-938778e97d5b",
+														"exec": [
+															"tests[\"should have response\"] = responseBody !== \"\";"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{userTokenApproved}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"cpf\": \"15350946056\",\r\n    \"value\": 15000,\r\n    \"email\": \"preapporved@boticario.com.br\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://{{server}}/api/Purchase",
+													"protocol": "http",
+													"host": [
+														"{{server}}"
+													],
+													"path": [
+														"api",
+														"Purchase"
+													]
+												}
+											},
+											"response": []
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								},
+								{
+									"name": "GetAsync",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "85049a6b-17ef-4122-865d-c11f3b261cef",
+												"exec": [
+													"tests[\"should have response\"] = responseBody !== \"\";\r",
+													"if(tests[\"should have response\"]){\r",
+													"    var response = JSON.parse(responseBody);\r",
+													"    pm.environment.set(\"idPurchaseUser\", response[0].id);\r",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{userToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://{{server}}/api/Purchase",
+											"protocol": "http",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"api",
+												"Purchase"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "GetAsync ID",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "9a16982f-4496-4eb5-8acd-17c816187a49",
+												"exec": [
+													"tests[\"should have response\"] = responseBody !== \"\";"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{userToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://{{server}}/api/Purchase/{{idPurchaseUser}}",
+											"protocol": "http",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"api",
+												"Purchase",
+												"{{idPurchaseUser}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "286878a3-62a6-4f43-ae9d-2279fe3d3da7",
+												"exec": [
+													"tests[\"should have response\"] = responseBody !== \"\";\r",
+													"if(tests[\"should have response\"]){\r",
+													"    var response = JSON.parse(responseBody);\r",
+													"    pm.environment.set(\"idPurchaseUserUpadate\", response.id);\r",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{userToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"cpf\": \"82177322057\",\r\n    \"value\": 6000,\r\n    \"email\": \"user@boticario.com.br\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://{{server}}/api/Purchase",
+											"protocol": "http",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"api",
+												"Purchase"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "84890a61-94af-414b-9526-ca0377543ab1",
+												"exec": [
+													"tests[\"should have response\"] = responseBody !== \"\";\r",
+													"if(tests[\"should have response\"]){\r",
+													"    var response = JSON.parse(responseBody);\r",
+													"    pm.environment.set(\"idPurchaseUserUpadate\", response.id);\r",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{userToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"cpf\": \"82177322057\",\r\n    \"value\": 1500.0,\r\n    \"email\": \"user@boticario.com.br\",\r\n    \"code\": \"0502A0FDCBF743E5\",\r\n    \"cashbackPercent\": 20.0,\r\n    \"cashbackValue\": 1200.0,\r\n    \"status\": \"OnCheking\",\r\n    \"id\": \"{{idPurchaseUserUpadate}}\",\r\n    \"createdTime\": \"2020-08-16T02:32:45.1401277Z\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://{{server}}/api/Purchase/{{idPurchaseUserUpadate}}",
+											"protocol": "http",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"api",
+												"Purchase",
+												"{{idPurchaseUserUpadate}}"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
