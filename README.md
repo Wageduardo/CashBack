@@ -59,3 +59,7 @@ arquivos estão na raiz do projeto
 Boticario.Cashback.postman_collection.json
 - Step 2 - Importar o Environment
 Boticario.CashBack.postman_environment.json
+
+
+# Swagger 
+- http://localhost:<port>/swagger/ui
